@@ -2,7 +2,7 @@ import { ViewStyle } from 'react-native/types';
 
 export interface PointProps {
   style?: ViewStyle;
-  setPositions: (points: Points) => void;
+  setCtrlPointPosition: (points: Points) => void;
   position: Point;
   id: string;
 }
@@ -18,3 +18,10 @@ export interface Points {
     y: number;
   };
 }
+
+export interface ListType  {
+  name: string;
+  description: string;
+  background: any;
+  screenName: string;
+};

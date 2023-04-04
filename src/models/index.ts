@@ -1,14 +1,8 @@
 import { AppImages } from '../assets';
 import { Screens } from '../constants';
+import { ListType } from '../../types';
 
-export type ListType = {
-  name: string;
-  description: string;
-  background: any;
-  screenName: string;
-};
-
-export const DEMOS: ListType[] = [
+export const DATA: ListType[] = [
   {
     name: 'Bézier curves',
     description: 'Some samples the usage of Bézier curves using reanimated & svg.',

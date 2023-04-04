@@ -5,16 +5,21 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { PointProps } from '../../../types';
 import { RADIUS, CIRCULO } from '../../constants';
 
-export const ControlPoint: React.FC<PointProps> = ({ style, setPositions, position, id }) => {
+export const ControlPoint: React.FC<PointProps> = ({
+  style,
+  setCtrlPointPosition,
+  position,
+  id,
+}) => {
   const translateX = useSharedValue(position.x);
   const translateY = useSharedValue(position.y);
-  const controlPointId = useSharedValue<string>(id);
+  const ctrlPointId = useSharedValue<string>(id);
 
   const panGesture = Gesture.Pan().onChange(e => {
     translateX.value = e.absoluteX;
     translateY.value = e.absoluteY;
-    runOnJS(setPositions)({
-      [controlPointId.value]: { x: e.absoluteX, y: e.absoluteY },
+    runOnJS(setCtrlPointPosition)({
+      [ctrlPointId.value]: { x: e.absoluteX, y: e.absoluteY },
     });
   });
 
@@ -23,6 +28,7 @@ export const ControlPoint: React.FC<PointProps> = ({ style, setPositions, positi
       transform: [{ translateX: translateX.value }, { translateY: translateY.value }],
     };
   });
+  
   return (
     <GestureDetector gesture={panGesture}>
       <Animated.View style={[styles.point, animatedStyle, style]} />

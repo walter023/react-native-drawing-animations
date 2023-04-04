@@ -19,12 +19,12 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { isAndroid } from '../../helpers';
-import { DEMOS } from '../../models';
+import { DATA } from '../../models';
 import * as theme from '../../theme';
 import { NavigationContext } from '../../navigation';
 
 interface ListItemProps {
-  data: ListRenderItemInfo<typeof DEMOS[0]>;
+  data: ListRenderItemInfo<typeof DATA[0]>;
 }
 
 export const ListItem: React.FC<ListItemProps> = ({ data }) => {
