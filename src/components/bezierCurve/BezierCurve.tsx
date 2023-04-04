@@ -1,19 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import Animated, {
-  runOnJS,
-  useAnimatedProps,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, { runOnJS, useAnimatedProps, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 
 import { Points as PointsPros } from '../../../types';
 import { ControlPointsInitState } from '../../models';
 import { ControlPoint } from './ControlPoint';
-import { R } from '../../constants';
+import { Color, R } from '../../constants';
 
 export const Beziercurve: React.FC = () => {
   const duration = { duration: 2000 };
@@ -86,37 +79,14 @@ export const Beziercurve: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <ControlPoint
-        setCtrlPointPosition={setCtrlPointPosition}
-        style={styles.p0}
-        position={ctrlPoints.value.p0}
-        id="p0"
-      />
-      <ControlPoint
-        setCtrlPointPosition={setCtrlPointPosition}
-        style={styles.p1}
-        position={ctrlPoints.value.p1}
-        id="p1"
-      />
-      <ControlPoint
-        setCtrlPointPosition={setCtrlPointPosition}
-        style={styles.p2}
-        position={ctrlPoints.value.p2}
-        id="p2"
-      />
+      <ControlPoint setCtrlPointPosition={setCtrlPointPosition} style={styles.p0} position={ctrlPoints.value.p0} id="p0" />
+      <ControlPoint setCtrlPointPosition={setCtrlPointPosition} style={styles.p1} position={ctrlPoints.value.p1} id="p1" />
+      <ControlPoint setCtrlPointPosition={setCtrlPointPosition} style={styles.p2} position={ctrlPoints.value.p2} id="p2" />
       <Svg width={width} height={height} style={styles.canvas}>
-        <Fragment>
-          <AnimatedPath animatedProps={triangulePath} fill="none" strokeWidth={2} stroke={'red'} />
-          <AnimatedPath animatedProps={connectorPath} fill="none" strokeWidth={2} stroke={'red'} />
-        </Fragment>
-        <AnimatedPath
-          animatedProps={bezierCurvePath}
-          fill="none"
-          strokeWidth={4}
-          stroke={'#17c3b2'}
-        />
+        <AnimatedPath animatedProps={triangulePath} fill="none" strokeWidth={2} stroke={Color.RED} />
+        <AnimatedPath animatedProps={connectorPath} fill="none" strokeWidth={2} stroke={Color.RED} />
+        <AnimatedPath animatedProps={bezierCurvePath} fill="none" strokeWidth={4} stroke={Color.CYAN} />
       </Svg>
-
       <Fragment>
         <Animated.View style={[styles.l1, ballSideA]} />
         <Animated.View style={[styles.l2, ballSideB]} />
@@ -130,17 +100,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   p0: {
-    backgroundColor: 'yellow',
+    backgroundColor: Color.SOFT_RED,
     left: -5,
     zIndex: 1,
   },
   p1: {
-    backgroundColor: 'purple',
+    backgroundColor: Color.SOFT_BLUE,
     left: -5,
     zIndex: 1,
   },
   p2: {
-    backgroundColor: 'pink',
+    backgroundColor: Color.GREEN,
     left: -5,
     zIndex: 1,
   },
