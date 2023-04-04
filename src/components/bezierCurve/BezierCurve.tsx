@@ -65,6 +65,13 @@ export const Beziercurve: React.FC = () => {
     return { d: `M${lineStarts}L${lineEnds}` };
   });
 
+  const bezierCurvePath = useAnimatedProps(() => {
+    const curveStarts = `${SideAX.value + R} ${SideAY.value + R}`;
+    const curvePositionAndDepth = `${SideBX.value + R} ${SideBY.value + R}`;
+    const curveEnds = `${ctrlPoints.value.p2.x + R}  ${ctrlPoints.value.p2.y + R}`;
+    return { d: `M${curveStarts} Q${curvePositionAndDepth} ${curveEnds}` };
+  });
+
   const ballSideA = useAnimatedStyle(() => {
     return {
       transform: [{ translateX: SideAX.value }, { translateY: SideAY.value }],
@@ -102,7 +109,14 @@ export const Beziercurve: React.FC = () => {
           <AnimatedPath animatedProps={triangulePath} fill="none" strokeWidth={2} stroke={'red'} />
           <AnimatedPath animatedProps={connectorPath} fill="none" strokeWidth={2} stroke={'red'} />
         </Fragment>
+        <AnimatedPath
+          animatedProps={bezierCurvePath}
+          fill="none"
+          strokeWidth={4}
+          stroke={'#17c3b2'}
+        />
       </Svg>
+
       <Fragment>
         <Animated.View style={[styles.l1, ballSideA]} />
         <Animated.View style={[styles.l2, ballSideB]} />
@@ -146,7 +160,6 @@ const styles = StyleSheet.create({
     borderRadius: R,
     backgroundColor: 'green',
     position: 'absolute',
- 
   },
   button: {
     width: 80,
