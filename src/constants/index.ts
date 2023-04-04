@@ -6,3 +6,4 @@ export const Screens = {
 
 export const RADIUS = 18;
 export const CIRCULO = 36;
+export const R = 10;

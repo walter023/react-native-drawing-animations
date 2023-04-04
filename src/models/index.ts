@@ -1,6 +1,9 @@
 import { AppImages } from '../assets';
 import { Screens } from '../constants';
-import { ListType } from '../../types';
+import { ListType, Points } from '../../types';
+import { useWindowDimensions } from 'react-native';
+
+const { width, height } = useWindowDimensions();
 
 export const DATA: ListType[] = [
   {
@@ -16,3 +19,18 @@ export const DATA: ListType[] = [
     screenName: Screens.ROPE_EEFECT,
   },
 ];
+
+export const ControlPointsInitState: Points = {
+  p0: {
+    x: 20,
+    y: height / 2,
+  },
+  p1: {
+    x: width / 2,
+    y: 20,
+  },
+  p2: {
+    x: width - 20,
+    y: height / 2,
+  },
+};

@@ -1,10 +1,11 @@
 import { StyleSheet, Text } from 'react-native';
 import { Layout } from '../layout';
+import { Beziercurve } from '../components/bezierCurve/BezierCurve';
 
 export const BezierCurveScreen: React.FC = () => {
   return (
-    <Layout style={styles.container}>
-      <Text>BazierCurveScreen</Text>
+    <Layout>
+      <Beziercurve />
     </Layout>
   );
 };
