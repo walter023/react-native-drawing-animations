@@ -27,7 +27,7 @@ React Native has recently undergone a major architectural change, known as "Fabr
 "react-native-drawing-animations" showcases animations that are built using the new Fabric architecture, which provides significant performance improvements and a more streamlined development experience. These animations take advantage of the new Animated API in Fabric, which enables smooth and performant animations even on low-end devices.
 
 # Usage
-"react-native-drawing-animations" is not a library, but rather a portfolio showcasing different drawing animations. To view the animations, simply download or clone the repository from GitHub and run the application on your local machine. The animations can be viewed and interacted with on both iOS and Android devices.
+"react-native-drawing-animations" is not a library, but rather a collection of examples showcasing how to implement drawing animations using Reanimated, React, and Hooks. To view the examples, simply download or clone the repository from GitHub and run the application on your local machine. The animations can be viewed and interacted with on both iOS and Android devices.
 
 # Contributing
 If you have any feedback or suggestions for improving this portfolio, please create an issue or submit a pull request on GitHub. We welcome contributions from the community and appreciate any feedback or suggestions for improving these animations.
