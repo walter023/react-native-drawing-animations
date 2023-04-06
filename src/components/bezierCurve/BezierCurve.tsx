@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useDebugValue, useEffect } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import Animated, {
@@ -30,8 +30,8 @@ export const Beziercurve: React.FC = () => {
   const sideBY = useSharedValue<number>(ControlPointsInitState.p2.y);
 
   const bezierT = useSharedValue<number>(0);
-  const bezeirCurveX = useSharedValue<number>(sideBX.value);
-  const bezeirCurveY = useSharedValue<number>(sideBY.value);
+  const bezeirX = useSharedValue<number>(sideBX.value);
+  const bezeirY = useSharedValue<number>(sideBY.value);
 
   const setCtrlPointPosition = (point: PointsPros): void => {
     if (point) {
@@ -42,8 +42,8 @@ export const Beziercurve: React.FC = () => {
       sideAY.value = ctrlPoints.value.p1.y;
       sideBX.value = ctrlPoints.value.p2.x;
       sideBY.value = ctrlPoints.value.p2.y;
-      bezeirCurveX.value = sideBX.value;
-      bezeirCurveY.value = sideBY.value;
+      bezeirX.value = sideBX.value;
+      bezeirY.value = sideBY.value;
       bezierT.value = 0;
       runOnJS(runInterpolation)();
     }
@@ -66,8 +66,8 @@ export const Beziercurve: React.FC = () => {
     const y1 = sideBY.value;
     const x2 = sideAX.value;
     const y2 = sideAY.value;
-    bezeirCurveX.value = lerp(x1, x2, bezierT.value);
-    bezeirCurveY.value = lerp(y1, y2, bezierT.value);
+    bezeirX.value = lerp(x1, x2, bezierT.value);
+    bezeirY.value = lerp(y1, y2, bezierT.value);
   }, [bezierT, sideAX, sideAY, sideBX, sideBY]);
 
   const triangulePath = useAnimatedProps(() => {
@@ -86,7 +86,7 @@ export const Beziercurve: React.FC = () => {
   });
 
   const bezierCurvePath = useAnimatedProps(() => {
-    const curveStarts = `${bezeirCurveX.value + R} ${bezeirCurveY.value + R}`;
+    const curveStarts = `${bezeirX.value + R} ${bezeirY.value + R}`;
     const curvePositionAndDepth = `${sideAX.value + R} ${sideAY.value + R}`;
     const curveEnds = `${ctrlPoints.value.p0.x + R}  ${ctrlPoints.value.p0.y + R}`;
     return { d: `M${curveStarts} Q${curvePositionAndDepth} ${curveEnds}` };
@@ -106,7 +106,7 @@ export const Beziercurve: React.FC = () => {
 
   const bezierBall = useAnimatedStyle(() => {
     return {
-      transform: [{ translateX: bezeirCurveX.value }, { translateY: bezeirCurveY.value }],
+      transform: [{ translateX: bezeirX.value }, { translateY: bezeirY.value }],
     };
   });
   return (

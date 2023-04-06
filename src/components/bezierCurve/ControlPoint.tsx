@@ -1,34 +1,33 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import Animated, { runOnJS, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import { StyleSheet, useWindowDimensions } from 'react-native';
+import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withDecay } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { PointProps } from '../../../types';
 import { RADIUS, CIRCULO } from '../../constants';
 
-export const ControlPoint: React.FC<PointProps> = ({
-  style,
-  setCtrlPointPosition,
-  position,
-  id,
-}) => {
+export const ControlPoint: React.FC<PointProps> = ({ style, setCtrlPointPosition, position, id }) => {
   const translateX = useSharedValue(position.x);
   const translateY = useSharedValue(position.y);
   const ctrlPointId = useSharedValue<string>(id);
-
-  const panGesture = Gesture.Pan().onChange(e => {
-    translateX.value = e.absoluteX;
-    translateY.value = e.absoluteY;
-    runOnJS(setCtrlPointPosition)({
-      [ctrlPointId.value]: { x: e.absoluteX, y: e.absoluteY },
+  const { width, height } = useWindowDimensions();
+  const panGesture = Gesture.Pan()
+    .onChange(e => {
+      translateX.value = e.absoluteX;
+      translateY.value = e.absoluteY;
+      runOnJS(setCtrlPointPosition)({
+        [ctrlPointId.value]: { x: e.absoluteX, y: e.absoluteY },
+      });
+    })
+    .onEnd(e => {
+      withDecay({ velocity: e.velocityX, clamp: [height, width] });
     });
-  });
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ translateX: translateX.value }, { translateY: translateY.value }],
     };
   });
-  
+
   return (
     <GestureDetector gesture={panGesture}>
       <Animated.View style={[styles.point, animatedStyle, style]} />
