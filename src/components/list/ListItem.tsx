@@ -8,20 +8,19 @@ import { DATA } from '../../models';
 import * as theme from '../../theme';
 import { NavigationContext } from '../../navigation';
 import { Icon } from '../Icon';
+import { IconSize } from '../../../types';
 
 interface ListItemProps {
   data: ListRenderItemInfo<typeof DATA[0]>;
 }
 
 export const ListItem: React.FC<ListItemProps> = ({ data }) => {
-  const { index, item } = data;
-
   const { navigate } = useContext(NavigationContext);
   const isDarkMode = useColorScheme() === 'dark';
   const { width } = useWindowDimensions();
-
   const translateY = useSharedValue(50);
   const opacity = useSharedValue(0);
+  const { index, item } = data;
   const itemWidth = width - 24;
 
   useEffect(() => {
@@ -53,7 +52,7 @@ export const ListItem: React.FC<ListItemProps> = ({ data }) => {
         android_ripple={styles.ripple}
         onPress={onPressed}
       >
-        <Icon name={item.background} height={80} width={80} />
+        <Icon name={item.background} size={IconSize.XLG} />
         <View style={styles.cardDetails}>
           <Text style={themeStyles(isDarkMode).listItemTitle} numberOfLines={2}>
             {item.name}

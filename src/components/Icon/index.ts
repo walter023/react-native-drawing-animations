@@ -29,13 +29,13 @@ export const Icon: React.FC<IconProps> = props => {
         break;
 
       case IconSize.LG:
-        height = 52;
-        width = 52;
+        height = 60;
+        width = 60;
         break;
 
       case IconSize.XLG:
-        height = 60;
-        width = 60;
+        height = 80;
+        width = 80;
         break;
 
       default:
