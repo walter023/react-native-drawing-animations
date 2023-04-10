@@ -25,3 +25,11 @@ export interface ListType  {
   background: any;
   screenName: string;
 };
+
+export interface IconProps  {
+  name: string;
+  fill?: string;
+  width?: number;
+  height?: number;
+};
+
