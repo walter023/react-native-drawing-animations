@@ -22,7 +22,7 @@ export interface Points {
 export interface ListType  {
   name: string;
   description: string;
-  background: any;
+  icon: string;
   screenName: string;
 };
 

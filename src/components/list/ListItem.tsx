@@ -51,7 +51,7 @@ export const ListItem: React.FC<ListItemProps> = ({ data }) => {
         android_ripple={styles.ripple}
         onPress={onPressed}
       >
-        <Icon name={item.background} size={IconSize.XLG} />
+        <Icon name={item.icon} size={IconSize.XLG} />
         <View style={styles.cardDetails}>
           <Text style={themeStyles(isDarkMode).listItemTitle} numberOfLines={2}>
             {item.name}

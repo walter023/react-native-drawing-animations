@@ -8,13 +8,13 @@ export const DATA: ListType[] = [
   {
     name: 'Bézier curves',
     description: 'Some samples the usage of Bézier curves using reanimated & svg.',
-    background: 'bezierCurve',
+    icon: 'bezierCurve',
     screenName: Screens.BEZIER_CURVE,
   },
   {
     name: 'Rope Effect',
     description: 'Some samples the usage of rope physics curves using reanimated & svg.',
-    background: 'length',
+    icon: 'length',
     screenName: Screens.ROPE_EEFECT,
   },
 ];
