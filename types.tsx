@@ -28,8 +28,17 @@ export interface ListType  {
 
 export interface IconProps  {
   name: string;
+  size?: IconSize;
   fill?: string;
   width?: number;
   height?: number;
 };
 
+export enum IconSize {
+  XXS = 'xxs',
+  XS = 'xs',
+  SM = 'sm',
+  MD = 'md',
+  LG = 'lg',
+  XLG = 'xlg',
+}
