@@ -3,7 +3,7 @@ import { Screens } from '../constants';
 import { HomeScreen } from '../screens/Home';
 import { BezierCurveScreen } from '../screens/BezierCurve';
 
-const templateScreen = {
+const templateScreen: { [key: string]: JSX.Element } = {
   [Screens.HOME]: <HomeScreen />,
   [Screens.BEZIER_CURVE]: <BezierCurveScreen />,
 };
