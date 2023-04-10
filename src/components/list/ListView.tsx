@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { ListItem } from './ListItem';
-import { ListType } from '../../models';
+import { ListType } from '../../../types';
 
 interface Props {
   listData: ListType[];

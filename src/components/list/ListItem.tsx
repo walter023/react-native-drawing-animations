@@ -1,27 +1,13 @@
-import React, { useCallback, useContext, useEffect } from 'react';
-import {
-  Image,
-  ListRenderItemInfo,
-  Pressable,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { ListRenderItemInfo, Pressable, StyleSheet, Text, useColorScheme, useWindowDimensions, View } from 'react-native';
 
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 
 import { isAndroid } from '../../helpers';
 import { DATA } from '../../models';
 import * as theme from '../../theme';
 import { NavigationContext } from '../../navigation';
+import { Icon } from '../Icon';
 
 interface ListItemProps {
   data: ListRenderItemInfo<typeof DATA[0]>;
@@ -54,9 +40,7 @@ export const ListItem: React.FC<ListItemProps> = ({ data }) => {
   };
 
   return (
-    <Animated.View
-      style={[themeStyles(isDarkMode).listItemContainer, { width: itemWidth }, animateStyles]}
-    >
+    <Animated.View style={[themeStyles(isDarkMode).listItemContainer, { width: itemWidth }, animateStyles]}>
       <Pressable
         style={({ pressed }) => [
           {
@@ -69,7 +53,7 @@ export const ListItem: React.FC<ListItemProps> = ({ data }) => {
         android_ripple={styles.ripple}
         onPress={onPressed}
       >
-        <Image style={styles.listItemImage} source={item.background} resizeMode="cover" />
+        <Icon name={item.background} height={80} width={80} />
         <View style={styles.cardDetails}>
           <Text style={themeStyles(isDarkMode).listItemTitle} numberOfLines={2}>
             {item.name}
