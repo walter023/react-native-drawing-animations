@@ -14,7 +14,7 @@ export const DATA: ListType[] = [
   {
     name: 'Rope Effect',
     description: 'Some samples the usage of rope physics curves using reanimated & svg.',
-    background: 'bezierCurve',
+    background: 'length',
     screenName: Screens.ROPE_EEFECT,
   },
 ];

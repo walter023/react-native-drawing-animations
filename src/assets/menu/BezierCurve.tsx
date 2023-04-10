@@ -2,7 +2,7 @@ import Svg, { SvgProps, Path, G } from 'react-native-svg';
 
 export const BezierCurve = (props: SvgProps) => {
   return (
-    <Svg fill="#000000" height="80px" width="80px" viewBox="0 0 512 512">
+    <Svg viewBox="0 0 512 512" {...props}>
       <G>
         <G>
           <Path
