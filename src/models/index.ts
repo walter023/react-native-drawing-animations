@@ -17,6 +17,12 @@ export const DATA: ListType[] = [
     icon: 'length',
     screenName: Screens.ROPE_EEFECT,
   },
+  {
+    name: 'Beacon Beam',
+    description: 'Some samples the usage of vectors, dot product, vector projection using reanimated & svg.',
+    icon: 'turret',
+    screenName: Screens.ROPE_EEFECT,
+  },
 ];
 
 export const ControlPointsInitState: Points = {
