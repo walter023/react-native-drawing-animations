@@ -1,4 +1,4 @@
-import React, { Fragment, useDebugValue, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import Animated, {
@@ -13,9 +13,9 @@ import Animated, {
 
 import { Points as PointsPros } from '../../../types';
 import { ControlPointsInitState } from '../../models';
-import { ControlPoint } from './ControlPoint';
 import { Color, R } from '../../constants';
 import { lerp } from '../../helpers';
+import { ControlPoint } from './ControlPoint';
 
 export const Beziercurve: React.FC = () => {
   const DURATION = { duration: 3000 };
