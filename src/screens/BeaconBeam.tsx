@@ -1,7 +1,7 @@
 import { Layout } from '../layout';
 import { BeaconBeam } from '../components/BeaconBeam';
 
-export const BezierCurveScreen: React.FC = () => {
+export const BeaconBeamScreen: React.FC = () => {
   return (
     <Layout>
       <BeaconBeam />

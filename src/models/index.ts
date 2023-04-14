@@ -21,7 +21,7 @@ export const DATA: ListType[] = [
     name: 'Beacon Beam',
     description: 'Some samples the usage of vectors, dot product, vector projection using reanimated & svg.',
     icon: 'turret',
-    screenName: Screens.ROPE_EEFECT,
+    screenName: Screens.BEACON_BEAM,
   },
 ];
 
