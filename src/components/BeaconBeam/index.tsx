@@ -13,7 +13,7 @@ import Animated, {
 
 import { IconSize, Vector2 } from '../../../types';
 import { Icon } from '../Icon';
-import { Color, ANGLE, RADIUS, DURATION } from '../../constants';
+import { Color, ANGLE, R, DURATION } from '../../constants';
 
 export const BeaconBeam: React.FC = () => {
   const { width, height } = useWindowDimensions();
@@ -34,7 +34,6 @@ export const BeaconBeam: React.FC = () => {
     return {
       transform: [{ rotate: `${angle.value}deg` }],
       marginTop: yTurret,
-      marginLeft: xTurret,
     };
   });
 
@@ -81,10 +80,10 @@ export const BeaconBeam: React.FC = () => {
       xEdge = 0;
       yEdge = slope * (xEdge - xTurret) + yTurret;
       if (yEdge > height || yEdge < 0) {
-        hitPoint = { x: xTurret - yTurret / slope, y: RADIUS };
+        hitPoint = { x: xTurret - yTurret / slope, y: R };
         console.log('hitPoint', hitPoint);
       } else {
-        hitPoint = { x: xEdge + RADIUS, y: yEdge };
+        hitPoint = { x: xEdge + R, y: yEdge };
       }
     }
     // Check for right edge intersection
@@ -92,21 +91,21 @@ export const BeaconBeam: React.FC = () => {
       xEdge = width;
       yEdge = slope * (xEdge - xTurret) + yTurret;
       if (yEdge > height || yEdge < 0) {
-        hitPoint = { x: xTurret - yTurret / slope, y: RADIUS };
+        hitPoint = { x: xTurret - yTurret / slope, y: R };
       } else {
-        hitPoint = { x: xEdge - RADIUS, y: yEdge };
+        hitPoint = { x: xEdge - R, y: yEdge };
       }
     }
     // Check for edge case where laser is vertical
     else {
-      hitPoint = { x: xRay.value, y: yRay.value > height ? height : RADIUS }; //y: 0 };
+      hitPoint = { x: xRay.value, y: yRay.value > height ? height : R }; //y: 0 };
     }
     // draw the hit point
     const path = `
     M${hitPoint.x},${hitPoint.y}
-    m -${RADIUS}, 0
-    a ${RADIUS},${RADIUS} 0 1,0 ${RADIUS * 2},0
-    a ${RADIUS},${RADIUS} 0 1,0 ${-RADIUS * 2},0
+    m -${R}, 0
+    a ${R},${R} 0 1,0 ${R * 2},0
+    a ${R},${R} 0 1,0 ${-R * 2},0
     `;
     return { path, hitPoint };
   }, [xRay.value, yRay.value]);
@@ -116,6 +115,7 @@ export const BeaconBeam: React.FC = () => {
   });
 
   const reflect = (incomingVector: Vector2, normalVector: Vector2): Vector2 => {
+    'worklet';
     const dotProduct = incomingVector.x * normalVector.x + incomingVector.y * normalVector.y;
     return {
       x: incomingVector.x - 2 * dotProduct * normalVector.x,
@@ -143,7 +143,7 @@ export const BeaconBeam: React.FC = () => {
       </Svg>
 
       <Animated.View style={[styles.turret, animatedStyle]}>
-        <Icon name="spider" size={IconSize.LG} />
+        <Icon name="ship" size={IconSize.LG} />
       </Animated.View>
     </>
   );
@@ -151,9 +151,7 @@ export const BeaconBeam: React.FC = () => {
 
 const styles = StyleSheet.create({
   turret: {
-    borderWidth: 2,
-    borderColor: 'green',
-    alignSelf: 'center',
     position: 'absolute',
+    alignSelf: 'center',
   },
 });

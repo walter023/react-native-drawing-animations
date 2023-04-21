@@ -3,6 +3,7 @@ import { Axis } from '../../assets/menu/Axis';
 import { Length } from '../../assets/menu/Length';
 import { Turret } from '../../assets/menu/LaserTurret';
 import { Spider } from '../../assets/menu/Spaider';
+import { Ship } from '../../assets/menu/Ship';
 
 export const Icons: { [key: string]: any } = {
   bezierCurve: BezierCurve,
@@ -10,4 +11,5 @@ export const Icons: { [key: string]: any } = {
   length: Length,
   turret: Turret,
   spider: Spider,
+  ship: Ship,
 };
