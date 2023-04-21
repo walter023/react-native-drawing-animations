@@ -5,9 +5,12 @@ export const Screens = {
   BEACON_BEAM: 'BEACON_BEAM',
 };
 
-export const RADIUS = 18;
+
 export const CIRCULO = 36;
 export const R = 10;
+export const RADIUS = 20;
+export const DURATION = { duration: 8000 };
+export const ANGLE = { startAngle: 100, endAngle: 250 };
 
 export const Color = {
   SOFT_BLUE: "#8ecae6",

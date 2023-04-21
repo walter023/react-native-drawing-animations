@@ -13,23 +13,17 @@ import Animated, {
 
 import { IconSize } from '../../../types';
 import { Icon } from '../Icon';
-import { Color } from '../../constants';
-
-const RADIUS = 20;
-const DURATION = { duration: 8000 };
-const ANGLE = { startAngle: 100, endAngle: 250 };
+import { Color, ANGLE, RADIUS, DURATION } from '../../constants';
 
 export const BeaconBeam: React.FC = () => {
   const { width, height } = useWindowDimensions();
   const { startAngle, endAngle } = ANGLE;
   const yTurret = height / 1.2;
   const xTurret = width / 2;
-
   const isAnimationCancel = useSharedValue<boolean>(false);
   const xRay = useSharedValue<number>(0);
   const yRay = useSharedValue<number>(0);
   const angle = useSharedValue<number>(startAngle);
-
   const AnimatedPath = Animated.createAnimatedComponent<PathProps>(Path);
 
   useEffect(() => {
@@ -113,7 +107,6 @@ export const BeaconBeam: React.FC = () => {
     a ${RADIUS},${RADIUS} 0 1,0 ${RADIUS * 2},0
     a ${RADIUS},${RADIUS} 0 1,0 ${-RADIUS * 2},0
     `;
-
     return { path, hitPoint };
   }, [xRay.value, yRay.value]);
 
@@ -135,7 +128,6 @@ export const BeaconBeam: React.FC = () => {
       y: incomingVector.y - 2 * dotProduct * normalVector.y,
     };
     const reflectedPath = `M${xHitPoint},${yHitPoint} L${xHitPoint + reflectedVector.x},${yHitPoint + reflectedVector.y}`;
-
     return { d: reflectedPath };
   });
 

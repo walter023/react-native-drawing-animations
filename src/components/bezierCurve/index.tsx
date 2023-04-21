@@ -13,12 +13,11 @@ import Animated, {
 
 import { Points as PointsPros } from '../../../types';
 import { ControlPointsInitState } from '../../models';
-import { Color, R } from '../../constants';
+import { Color, R, DURATION} from '../../constants';
 import { lerp } from '../../helpers';
 import { ControlPoint } from './ControlPoint';
 
 export const Beziercurve: React.FC = () => {
-  const DURATION = { duration: 3000 };
   const AnimatedPath = Animated.createAnimatedComponent(Path);
   const { width, height } = useWindowDimensions();
   const ctrlPoints = useSharedValue<PointsPros>(ControlPointsInitState);
