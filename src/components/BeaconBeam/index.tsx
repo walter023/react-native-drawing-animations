@@ -11,7 +11,7 @@ import Animated, {
   useDerivedValue,
 } from 'react-native-reanimated';
 
-import { IconSize } from '../../../types';
+import { IconSize, Vector2 } from '../../../types';
 import { Icon } from '../Icon';
 import { Color, ANGLE, RADIUS, DURATION } from '../../constants';
 
@@ -82,6 +82,7 @@ export const BeaconBeam: React.FC = () => {
       yEdge = slope * (xEdge - xTurret) + yTurret;
       if (yEdge > height || yEdge < 0) {
         hitPoint = { x: xTurret - yTurret / slope, y: RADIUS };
+        console.log('hitPoint', hitPoint);
       } else {
         hitPoint = { x: xEdge + RADIUS, y: yEdge };
       }
@@ -114,19 +115,20 @@ export const BeaconBeam: React.FC = () => {
     return { d: intersectionPoint.value.path };
   });
 
+  const reflect = (incomingVector: Vector2, normalVector: Vector2): Vector2 => {
+    const dotProduct = incomingVector.x * normalVector.x + incomingVector.y * normalVector.y;
+    return {
+      x: incomingVector.x - 2 * dotProduct * normalVector.x,
+      y: incomingVector.y - 2 * dotProduct * normalVector.y,
+    };
+  };
+
   const rayPath = useAnimatedProps(() => {
     const normalVector = { x: -1, y: 0 }; // surface is flat and horizontal
     const xHitPoint = intersectionPoint.value.hitPoint.x;
     const yHitPoint = intersectionPoint.value.hitPoint.y;
-    const incomingVector = {
-      x: xRay.value - xHitPoint,
-      y: yRay.value - yHitPoint,
-    };
-    const dotProduct = incomingVector.x * normalVector.x + incomingVector.y * normalVector.y;
-    const reflectedVector = {
-      x: incomingVector.x - 2 * dotProduct * normalVector.x,
-      y: incomingVector.y - 2 * dotProduct * normalVector.y,
-    };
+    const incomingVector = { x: xRay.value - xHitPoint, y: yRay.value - yHitPoint };
+    const reflectedVector = reflect(incomingVector, normalVector);
     const reflectedPath = `M${xHitPoint},${yHitPoint} L${xHitPoint + reflectedVector.x},${yHitPoint + reflectedVector.y}`;
     return { d: reflectedPath };
   });

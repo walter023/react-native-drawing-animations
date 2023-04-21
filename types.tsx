@@ -3,11 +3,11 @@ import { ViewStyle } from 'react-native/types';
 export interface PointProps {
   style?: ViewStyle;
   setCtrlPointPosition: (points: Points) => void;
-  position: Point;
+  position: Vector2;
   id: string;
 }
 
-export interface Point {
+export interface Vector2 {
   x: number;
   y: number;
 }
