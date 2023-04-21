@@ -13,7 +13,7 @@ import Animated, {
 
 import { Points as PointsPros } from '../../../types';
 import { ControlPointsInitState } from '../../models';
-import { Color, R, DURATION} from '../../constants';
+import { Color, R, DURATION } from '../../constants';
 import { lerp } from '../../helpers';
 import { ControlPoint } from './ControlPoint';
 
@@ -135,16 +135,19 @@ const styles = StyleSheet.create({
     backgroundColor: Color.SOFT_RED,
     left: -5,
     zIndex: 1,
+    borderRadius: R * 2,
   },
   p1: {
     backgroundColor: Color.SOFT_BLUE,
     left: -5,
     zIndex: 1,
+    borderRadius: R * 2,
   },
   p2: {
     backgroundColor: Color.GREEN,
     left: -5,
     zIndex: 1,
+    borderRadius: R * 2,
   },
   p: {
     width: 20,
