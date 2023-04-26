@@ -12,7 +12,7 @@ import Animated, {
 
 import { IconSize, Vector2 } from '../../../types';
 import { Icon } from '../Icon';
-import { Color, ANGLE, DURATION } from '../../constants';
+import { Color, ANGLE, DURATION, BOUNCES } from '../../constants';
 
 export const BeaconBeam: React.FC = () => {
   const { width, height } = useWindowDimensions();
@@ -50,9 +50,7 @@ export const BeaconBeam: React.FC = () => {
       yEdge = slope * (xEdge - origin.x) + origin.y;
       if (yEdge > height || yEdge < 0) {
         hitPoint = { x: origin.x - origin.y / slope, y: 0 };
-        // console.log('hitPoint: ', hitPoint, 'yEdge: ', yEdge, 'laserVector: ', laserVector);
       } else {
-        //console.log('here');
         hitPoint = { x: xEdge, y: yEdge };
       }
     }
@@ -90,12 +88,12 @@ export const BeaconBeam: React.FC = () => {
     let normalVector = hitPoint.y ? { x: -1, y: 0 } : { x: 0, y: -1 };
     let incomingVector = { x: xRay.value - hitPoint.x, y: yRay.value - hitPoint.y };
     let reflectedVector = reflect(incomingVector, normalVector);
-    
+
     let startingPoint = `${hitPoint.x},${hitPoint.y}`;
     let path = `L${startingPoint}L${hitPoint.x + reflectedVector.x * height},${hitPoint.y + reflectedVector.y * height}`; // multiply by the height to make longer the length of the vector
 
     let x, y;
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < BOUNCES; i++) {
       radians = Math.atan2(reflectedVector.y, reflectedVector.x);
       x = Math.round(hitPoint.x + Math.cos(radians) * height);
       y = Math.round(hitPoint.y + Math.sin(radians) * height);
