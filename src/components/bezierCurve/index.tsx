@@ -13,7 +13,7 @@ import Animated, {
 
 import { Points as PointsPros } from '../../../types';
 import { ControlPointsInitState } from '../../models';
-import { Color, R, DURATION } from '../../constants';
+import { Color, R, BEZIER_DURATION } from '../../constants';
 import { lerp } from '../../helpers';
 import { ControlPoint } from './ControlPoint';
 
@@ -49,11 +49,11 @@ export const Beziercurve: React.FC = () => {
   };
 
   const runInterpolation = () => {
-    sideAX.value = withRepeat(withTiming(ctrlPoints.value.p0.x, DURATION), -1, true);
-    sideAY.value = withRepeat(withTiming(ctrlPoints.value.p0.y, DURATION), -1, true);
-    sideBX.value = withRepeat(withTiming(ctrlPoints.value.p1.x, DURATION), -1, true);
-    sideBY.value = withRepeat(withTiming(ctrlPoints.value.p1.y, DURATION), -1, true);
-    bezierT.value = withRepeat(withTiming(1, DURATION), -1, true);
+    sideAX.value = withRepeat(withTiming(ctrlPoints.value.p0.x, BEZIER_DURATION), -1, true);
+    sideAY.value = withRepeat(withTiming(ctrlPoints.value.p0.y, BEZIER_DURATION), -1, true);
+    sideBX.value = withRepeat(withTiming(ctrlPoints.value.p1.x, BEZIER_DURATION), -1, true);
+    sideBY.value = withRepeat(withTiming(ctrlPoints.value.p1.y, BEZIER_DURATION), -1, true);
+    bezierT.value = withRepeat(withTiming(1, BEZIER_DURATION), -1, true);
   };
 
   useEffect(() => {

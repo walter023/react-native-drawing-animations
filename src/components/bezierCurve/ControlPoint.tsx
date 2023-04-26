@@ -3,7 +3,7 @@ import { StyleSheet, useWindowDimensions } from 'react-native';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withDecay } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { PointProps } from '../../../types';
-import { RADIUS, CIRCULO } from '../../constants';
+import { CIRCULO } from '../../constants';
 
 export const ControlPoint: React.FC<PointProps> = ({ style, setCtrlPointPosition, position, id }) => {
   const translateX = useSharedValue(position.x);
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   point: {
     height: CIRCULO,
     width: CIRCULO,
-    borderRadius: RADIUS,
+    borderRadius: 18,
     zindex: 1,
     position: 'absolute',
     shadowColor: '#000',
