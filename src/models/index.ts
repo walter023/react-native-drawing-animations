@@ -12,16 +12,16 @@ export const DATA: ListType[] = [
     screenName: Screens.BEZIER_CURVE,
   },
   {
-    name: 'Rope Effect',
-    description: 'Some samples the usage of rope physics curves using reanimated & svg.',
-    icon: 'length',
-    screenName: Screens.ROPE_EEFECT,
-  },
-  {
     name: 'Beacon Beam',
     description: 'Some samples the usage of vectors, dot product, vector projection using reanimated & svg.',
     icon: 'turret',
     screenName: Screens.BEACON_BEAM,
+  },
+  {
+    name: 'Rope Effect',
+    description: 'Some samples the usage of rope physics curves using reanimated & svg.',
+    icon: 'length',
+    screenName: Screens.ROPE_EEFECT,
   },
 ];
 
