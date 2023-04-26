@@ -24,4 +24,5 @@ export const Color = {
   SOFT_RED: '#f25c54',
   PALE_PINK: '#ffafcc',
   WHITE: '#ffffff',
+  DARK: '#222831',
 };

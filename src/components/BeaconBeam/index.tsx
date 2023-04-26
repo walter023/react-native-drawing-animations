@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import Svg, { Path, PathProps } from 'react-native-svg';
-import { StyleSheet, useWindowDimensions } from 'react-native';
+import { StyleSheet, useColorScheme, useWindowDimensions } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -12,10 +12,12 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { IconSize, Vector2 } from '../../../types';
-import { Icon } from '../Icon';
 import { Color, ANGLE, DURATION, BOUNCES } from '../../constants';
+import * as theme from '../../theme';
+import { Icon } from '../Icon';
 
 export const BeaconBeam: React.FC = () => {
+  const isDarkMode = useColorScheme() === 'dark';
   const initialTime = useRef(Date.now());
   const { width, height } = useWindowDimensions();
   const { startAngle, endAngle } = ANGLE;
@@ -134,7 +136,7 @@ export const BeaconBeam: React.FC = () => {
         <AnimatedPath animatedProps={animatedRayPath} fill="none" strokeWidth={2} stroke={Color.RED} />
         <AnimatedPath
           animatedProps={laserEffectPath}
-          stroke={Color.WHITE}
+          stroke={theme.home(isDarkMode).listItemBg}
           fill="none"
           strokeWidth={2}
           strokeLinejoin="round"

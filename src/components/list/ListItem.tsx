@@ -8,6 +8,7 @@ import * as theme from '../../theme';
 import { NavigationContext } from '../../navigation';
 import { Icon } from '../Icon';
 import { IconSize } from '../../../types';
+import { Color } from '../../constants';
 
 interface ListItemProps {
   data: ListRenderItemInfo<typeof DATA[0]>;
@@ -51,7 +52,7 @@ export const ListItem: React.FC<ListItemProps> = ({ data }) => {
         android_ripple={styles.ripple}
         onPress={onPressed}
       >
-        <Icon name={item.icon} size={IconSize.XLG} />
+        <Icon name={item.icon} size={IconSize.XLG} fill={isDarkMode ? Color.WHITE : Color.DARK} />
         <View style={styles.cardDetails}>
           <Text style={themeStyles(isDarkMode).listItemTitle} numberOfLines={2}>
             {item.name}
