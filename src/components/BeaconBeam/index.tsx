@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Svg, { Path, PathProps } from 'react-native-svg';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import Animated, {
@@ -8,6 +8,7 @@ import Animated, {
   withTiming,
   useAnimatedProps,
   cancelAnimation,
+  useDerivedValue,
 } from 'react-native-reanimated';
 
 import { IconSize, Vector2 } from '../../../types';
@@ -15,6 +16,7 @@ import { Icon } from '../Icon';
 import { Color, ANGLE, DURATION, BOUNCES } from '../../constants';
 
 export const BeaconBeam: React.FC = () => {
+  const initialTime = useRef(Date.now());
   const { width, height } = useWindowDimensions();
   const { startAngle, endAngle } = ANGLE;
   const yTurret = height / 1.2;
@@ -22,10 +24,12 @@ export const BeaconBeam: React.FC = () => {
   const xRay = useSharedValue<number>(0);
   const yRay = useSharedValue<number>(0);
   const angle = useSharedValue<number>(startAngle);
+  const loop = useSharedValue<number>(0);
   const AnimatedPath = Animated.createAnimatedComponent<PathProps>(Path);
 
   useEffect(() => {
     angle.value = withRepeat(withTiming(endAngle, DURATION), -1, true);
+    loop.value = withRepeat(withTiming(100), -1, false);
   });
 
   /*
@@ -66,7 +70,7 @@ export const BeaconBeam: React.FC = () => {
     }
     // Check for edge case where laser is vertical
     else {
-      hitPoint = { x: incomingVector.x, y: incomingVector.y > height ? yTurret : 0 };
+      hitPoint = { x: incomingVector.x, y: incomingVector.y > height ? height : 0 };
     }
     return { x: Math.round(hitPoint.x), y: Math.round(hitPoint.y) };
   };
@@ -80,13 +84,13 @@ export const BeaconBeam: React.FC = () => {
     };
   };
 
-  const rayPath = useAnimatedProps(() => {
+  const path = useDerivedValue(() => {
     let radians = ((angle.value + startAngle) * Math.PI) / 180; // add 90 to adjust for the initial angle
     xRay.value = Math.round(xTurret + Math.cos(radians) * height);
     yRay.value = Math.round(yTurret + Math.sin(radians) * height);
     let hitPoint = intersectionPoint({ x: xRay.value, y: yRay.value }, { x: xTurret, y: yTurret });
-    let normalVector = hitPoint.y ? { x: -1, y: 0 } : { x: 0, y: -1 };
-    let incomingVector = { x: xRay.value - hitPoint.x, y: yRay.value - hitPoint.y };
+    let normalVector: Vector2 = hitPoint.y ? { x: -1, y: 0 } : { x: 0, y: -1 };
+    let incomingVector: Vector2 = { x: xRay.value - hitPoint.x, y: yRay.value - hitPoint.y };
     let reflectedVector = reflect(incomingVector, normalVector);
 
     let startingPoint = `${hitPoint.x},${hitPoint.y}`;
@@ -103,9 +107,19 @@ export const BeaconBeam: React.FC = () => {
       path = `${path}L${hitPoint.x},${hitPoint.y} L${reflectedVector.x * height},${reflectedVector.y * height}`;
     }
 
-    const ray = `M${xTurret},${yTurret} L${xRay.value},${yRay.value}${path}`;
-    return { d: ray };
+    return `M${xTurret},${yTurret} L${xRay.value},${yRay.value}${path}`;
   }, [angle.value]);
+
+  const animatedRayPath = useAnimatedProps(() => {
+    return { d: path.value };
+  });
+
+  const laserEffectPath = useAnimatedProps(() => {
+    return {
+      d: path.value,
+      strokeDashoffset: ((Date.now() - initialTime.current) / 1000) * -loop.value,
+    };
+  }, [path, loop]);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -117,7 +131,16 @@ export const BeaconBeam: React.FC = () => {
   return (
     <>
       <Svg height={height} width={width}>
-        <AnimatedPath animatedProps={rayPath} fill="none" strokeWidth={2} stroke={Color.RED} />
+        <AnimatedPath animatedProps={animatedRayPath} fill="none" strokeWidth={2} stroke={Color.RED} />
+        <AnimatedPath
+          animatedProps={laserEffectPath}
+          stroke={Color.WHITE}
+          fill="none"
+          strokeWidth={2}
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          strokeDasharray={[40, 15]}
+        />
       </Svg>
 
       <Animated.View style={[styles.turret, animatedStyle]} onTouchStart={() => cancelAnimation(angle)}>

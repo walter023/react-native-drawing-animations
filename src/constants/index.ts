@@ -7,8 +7,8 @@ export const Screens = {
 
 export const CIRCULO = 36;
 export const R = 10;
-export const DURATION = { duration: 8000 };
-export const BOUNCES = 4;
+export const DURATION = { duration: 18000 };
+export const BOUNCES = 3;
 export const ANGLE = { startAngle: -80, endAngle: 60 };
 
 export const Color = {
@@ -22,4 +22,5 @@ export const Color = {
   CYAN: '#17c3b2',
   SOFT_RED: '#f25c54',
   PALE_PINK: '#ffafcc',
+  WHITE: '#ffffff',
 };
