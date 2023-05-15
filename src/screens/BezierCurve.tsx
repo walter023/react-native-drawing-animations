@@ -1,12 +1,13 @@
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Layout } from '../layout';
 import { Beziercurve } from '../components/BezierCurve';
 
 export const BezierCurveScreen: React.FC = () => {
   return (
     <Layout>
-      <Beziercurve />
+      <GestureHandlerRootView>
+        <Beziercurve />
+      </GestureHandlerRootView>
     </Layout>
   );
 };
-
-
