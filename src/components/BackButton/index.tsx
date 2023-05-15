@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
+
 import { IconSize } from '../../../types';
-import { isAndroid } from '../../helpers';
 import { NavigationContext } from '../../navigation';
 import * as theme from '../../theme';
 import { Icon } from '../Icon';
