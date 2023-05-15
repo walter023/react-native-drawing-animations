@@ -2,7 +2,7 @@ import { BezierCurve } from '../../assets/menu/BezierCurve';
 import { Axis } from '../../assets/menu/Axis';
 import { Length } from '../../assets/menu/Length';
 import { Turret } from '../../assets/menu/LaserTurret';
-import { Spider } from '../../assets/menu/Spaider';
+import { BackButton } from '../../assets/menu/BackButton';
 import { Ship } from '../../assets/menu/Ship';
 
 export const Icons: { [key: string]: any } = {
@@ -10,6 +10,6 @@ export const Icons: { [key: string]: any } = {
   axis: Axis,
   length: Length,
   turret: Turret,
-  spider: Spider,
+  backButton: BackButton,
   ship: Ship,
 };

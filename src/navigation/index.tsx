@@ -15,6 +15,7 @@ const templateScreen: { [key: string]: JSX.Element } = {
 export const NavigationContext = React.createContext({
   currentScreen: Screens.HOME,
   navigate: (screen: string) => {},
+  back: () => {},
 });
 
 export const ContextNavigation = () => {
@@ -29,6 +30,7 @@ export const ContextNavigation = () => {
       value={{
         currentScreen,
         navigate,
+        back: () => setCurrentScreen(Screens.HOME),
       }}
     >
       {templateScreen[currentScreen]}
