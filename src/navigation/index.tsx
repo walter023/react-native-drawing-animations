@@ -3,11 +3,13 @@ import { Screens } from '../constants';
 import { HomeScreen } from '../screens/Home';
 import { BezierCurveScreen } from '../screens/BezierCurve';
 import { BeaconBeamScreen } from '../screens/BeaconBeam';
+import { SpaceShipScreen } from '../screens/SpaceShip';
 
 const templateScreen: { [key: string]: JSX.Element } = {
   [Screens.HOME]: <HomeScreen />,
   [Screens.BEZIER_CURVE]: <BezierCurveScreen />,
   [Screens.BEACON_BEAM]: <BeaconBeamScreen />,
+  [Screens.SPACE_SHIP]: <SpaceShipScreen />,
 };
 
 export const NavigationContext = React.createContext({

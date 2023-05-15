@@ -3,6 +3,7 @@ export const Screens = {
   BEZIER_CURVE: 'BEZIER_CURVE',
   ROPE_EEFECT: 'ROPE_EEFECT',
   BEACON_BEAM: 'BEACON_BEAM',
+  SPACE_SHIP: 'SPACE_SHIP',
 };
 
 export const CIRCULO = 36;
