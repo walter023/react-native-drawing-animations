@@ -10,7 +10,7 @@ export const CIRCULO = 36;
 export const R = 10;
 export const DURATION = { duration: 18000 };
 export const BEZIER_DURATION = { duration: 4000 };
-export const BOUNCES = 2;
+export const BOUNCES = 1;
 export const ANGLE = { startAngle: -80, endAngle: 60 };
 
 export const Color = {
